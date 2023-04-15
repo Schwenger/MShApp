@@ -7,19 +7,98 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF1F865129D6FE7600682E46 /* SensorOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1F865029D6FE7500682E46 /* SensorOverView.swift */; };
+		AF1F865329D704D700682E46 /* DictionaryCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1F865229D704D700682E46 /* DictionaryCoder.swift */; };
 		AF2717CA29B397AB0079F94E /* MShApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2717C929B397AB0079F94E /* MShApp.swift */; };
 		AF2717CC29B397AB0079F94E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2717CB29B397AB0079F94E /* ContentView.swift */; };
 		AF2717CE29B397AD0079F94E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF2717CD29B397AD0079F94E /* Assets.xcassets */; };
 		AF2717D229B397AD0079F94E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF2717D129B397AD0079F94E /* Preview Assets.xcassets */; };
+		AF2717D929B398D10079F94E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2717D829B398D10079F94E /* HomeView.swift */; };
+		AF2717DB29B39D530079F94E /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2717DA29B39D530079F94E /* HomeViewModel.swift */; };
+		AF2717E129B3B0390079F94E /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2717E029B3B0390079F94E /* RoomView.swift */; };
+		AF2717E729B3D8810079F94E /* RestApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2717E629B3D8810079F94E /* RestApi.swift */; };
+		AF27180E29B4D3840079F94E /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF2717F029B4BE9E0079F94E /* WidgetKit.framework */; };
+		AF27180F29B4D3840079F94E /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF2717F229B4BE9E0079F94E /* SwiftUI.framework */; };
+		AF27181229B4D3840079F94E /* MShWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF27181129B4D3840079F94E /* MShWidgetBundle.swift */; };
+		AF27181429B4D3840079F94E /* MShWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF27181329B4D3840079F94E /* MShWidgetLiveActivity.swift */; };
+		AF27181629B4D3840079F94E /* MShWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF27181529B4D3840079F94E /* MShWidget.swift */; };
+		AF27181929B4D3860079F94E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF27181829B4D3860079F94E /* Assets.xcassets */; };
+		AF27181B29B4D3860079F94E /* MShWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AF27181729B4D3840079F94E /* MShWidget.intentdefinition */; };
+		AF27181C29B4D3860079F94E /* MShWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AF27181729B4D3840079F94E /* MShWidget.intentdefinition */; };
+		AF27181F29B4D3860079F94E /* MShWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = AF27180D29B4D3840079F94E /* MShWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AF92CCEB29B50CB900B210EE /* IconSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF92CCEA29B50CB900B210EE /* IconSliderView.swift */; };
+		AFAFB51F29C750B500CA3C08 /* FFI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAFB51E29C750B500CA3C08 /* FFI.swift */; };
+		AFAFB52029C7A48B00CA3C08 /* FFI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAFB51E29C750B500CA3C08 /* FFI.swift */; };
+		AFD380B229B761F10013E4CA /* TabListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD380B129B761F10013E4CA /* TabListItemView.swift */; };
+		AFD380B529B7B8060013E4CA /* LightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD380B429B7B8060013E4CA /* LightView.swift */; };
+		AFD380B729B7C1820013E4CA /* RemoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD380B629B7C1820013E4CA /* RemoteView.swift */; };
+		AFD380BA29BA62B60013E4CA /* IkeaDimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD380B929BA62B60013E4CA /* IkeaDimmerView.swift */; };
+		AFD380BC29BA6B270013E4CA /* IkeaMultiButtonRemoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD380BB29BA6B270013E4CA /* IkeaMultiButtonRemoteView.swift */; };
+		AFD380BE29BB46EA0013E4CA /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD380BD29BB46EA0013E4CA /* Color.swift */; };
+		AFFEB54129B4E0F800B4643D /* TabListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFEB54029B4E0F800B4643D /* TabListItemView.swift */; };
+		AFFEB54829B4E5B400B4643D /* WidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFEB54629B4E5B400B4643D /* WidgetView.swift */; };
+		AFFEB54A29B4E65A00B4643D /* MShProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFEB54929B4E65A00B4643D /* MShProvider.swift */; };
+		AFFEB54B29B4E89400B4643D /* RestApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2717E629B3D8810079F94E /* RestApi.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		AF27181D29B4D3860079F94E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AF2717BE29B397AB0079F94E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AF27180C29B4D3840079F94E;
+			remoteInfo = MShWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AF27180729B4BEA00079F94E /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				AF27181F29B4D3860079F94E /* MShWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		AF1F865029D6FE7500682E46 /* SensorOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorOverView.swift; sourceTree = "<group>"; };
+		AF1F865229D704D700682E46 /* DictionaryCoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryCoder.swift; sourceTree = "<group>"; };
 		AF2717C629B397AB0079F94E /* MSh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MSh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF2717C929B397AB0079F94E /* MShApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MShApp.swift; sourceTree = "<group>"; };
 		AF2717CB29B397AB0079F94E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AF2717CD29B397AD0079F94E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF2717CF29B397AD0079F94E /* MSh.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MSh.entitlements; sourceTree = "<group>"; };
 		AF2717D129B397AD0079F94E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		AF2717D829B398D10079F94E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		AF2717DA29B39D530079F94E /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		AF2717E029B3B0390079F94E /* RoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomView.swift; sourceTree = "<group>"; };
+		AF2717E629B3D8810079F94E /* RestApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestApi.swift; sourceTree = "<group>"; };
+		AF2717F029B4BE9E0079F94E /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		AF2717F229B4BE9E0079F94E /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		AF27180829B4C1910079F94E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		AF27180D29B4D3840079F94E /* MShWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MShWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF27181129B4D3840079F94E /* MShWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MShWidgetBundle.swift; sourceTree = "<group>"; };
+		AF27181329B4D3840079F94E /* MShWidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MShWidgetLiveActivity.swift; sourceTree = "<group>"; };
+		AF27181529B4D3840079F94E /* MShWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MShWidget.swift; sourceTree = "<group>"; };
+		AF27181729B4D3840079F94E /* MShWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = MShWidget.intentdefinition; sourceTree = "<group>"; };
+		AF27181829B4D3860079F94E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AF27181A29B4D3860079F94E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AF92CCEA29B50CB900B210EE /* IconSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconSliderView.swift; sourceTree = "<group>"; };
+		AFAFB51E29C750B500CA3C08 /* FFI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFI.swift; sourceTree = "<group>"; };
+		AFD380B129B761F10013E4CA /* TabListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabListItemView.swift; sourceTree = "<group>"; };
+		AFD380B429B7B8060013E4CA /* LightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightView.swift; sourceTree = "<group>"; };
+		AFD380B629B7C1820013E4CA /* RemoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteView.swift; sourceTree = "<group>"; };
+		AFD380B929BA62B60013E4CA /* IkeaDimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IkeaDimmerView.swift; sourceTree = "<group>"; };
+		AFD380BB29BA6B270013E4CA /* IkeaMultiButtonRemoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IkeaMultiButtonRemoteView.swift; sourceTree = "<group>"; };
+		AFD380BD29BB46EA0013E4CA /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		AFFEB54029B4E0F800B4643D /* TabListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabListItemView.swift; sourceTree = "<group>"; };
+		AFFEB54629B4E5B400B4643D /* WidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetView.swift; sourceTree = "<group>"; };
+		AFFEB54929B4E65A00B4643D /* MShProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MShProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,6 +109,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AF27180A29B4D3840079F94E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF27180F29B4D3840079F94E /* SwiftUI.framework in Frameworks */,
+				AF27180E29B4D3840079F94E /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -37,6 +125,8 @@
 			isa = PBXGroup;
 			children = (
 				AF2717C829B397AB0079F94E /* MSh */,
+				AF27181029B4D3840079F94E /* MShWidget */,
+				AF2717EF29B4BE9E0079F94E /* Frameworks */,
 				AF2717C729B397AB0079F94E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -45,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				AF2717C629B397AB0079F94E /* MSh.app */,
+				AF27180D29B4D3840079F94E /* MShWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -52,11 +143,18 @@
 		AF2717C829B397AB0079F94E /* MSh */ = {
 			isa = PBXGroup;
 			children = (
+				AFD380B829BA62A80013E4CA /* Icons */,
+				AF27180829B4C1910079F94E /* Info.plist */,
 				AF2717C929B397AB0079F94E /* MShApp.swift */,
-				AF2717CB29B397AB0079F94E /* ContentView.swift */,
 				AF2717CD29B397AD0079F94E /* Assets.xcassets */,
 				AF2717CF29B397AD0079F94E /* MSh.entitlements */,
 				AF2717D029B397AD0079F94E /* Preview Content */,
+				AFD380B329B7B75C0013E4CA /* Views */,
+				AF2717DA29B39D530079F94E /* HomeViewModel.swift */,
+				AF2717E629B3D8810079F94E /* RestApi.swift */,
+				AFD380BD29BB46EA0013E4CA /* Color.swift */,
+				AFAFB51E29C750B500CA3C08 /* FFI.swift */,
+				AF1F865229D704D700682E46 /* DictionaryCoder.swift */,
 			);
 			path = MSh;
 			sourceTree = "<group>";
@@ -69,6 +167,55 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		AF2717EF29B4BE9E0079F94E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AF2717F029B4BE9E0079F94E /* WidgetKit.framework */,
+				AF2717F229B4BE9E0079F94E /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AF27181029B4D3840079F94E /* MShWidget */ = {
+			isa = PBXGroup;
+			children = (
+				AF27181129B4D3840079F94E /* MShWidgetBundle.swift */,
+				AF27181329B4D3840079F94E /* MShWidgetLiveActivity.swift */,
+				AF27181529B4D3840079F94E /* MShWidget.swift */,
+				AF27181729B4D3840079F94E /* MShWidget.intentdefinition */,
+				AF27181829B4D3860079F94E /* Assets.xcassets */,
+				AF27181A29B4D3860079F94E /* Info.plist */,
+				AFFEB54629B4E5B400B4643D /* WidgetView.swift */,
+				AFFEB54929B4E65A00B4643D /* MShProvider.swift */,
+				AFD380B129B761F10013E4CA /* TabListItemView.swift */,
+			);
+			path = MShWidget;
+			sourceTree = "<group>";
+		};
+		AFD380B329B7B75C0013E4CA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AF2717CB29B397AB0079F94E /* ContentView.swift */,
+				AF2717D829B398D10079F94E /* HomeView.swift */,
+				AF2717E029B3B0390079F94E /* RoomView.swift */,
+				AFD380B429B7B8060013E4CA /* LightView.swift */,
+				AFD380B629B7C1820013E4CA /* RemoteView.swift */,
+				AFFEB54029B4E0F800B4643D /* TabListItemView.swift */,
+				AF92CCEA29B50CB900B210EE /* IconSliderView.swift */,
+				AF1F865029D6FE7500682E46 /* SensorOverView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AFD380B829BA62A80013E4CA /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				AFD380B929BA62B60013E4CA /* IkeaDimmerView.swift */,
+				AFD380BB29BA6B270013E4CA /* IkeaMultiButtonRemoteView.swift */,
+			);
+			path = Icons;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -79,15 +226,34 @@
 				AF2717C229B397AB0079F94E /* Sources */,
 				AF2717C329B397AB0079F94E /* Frameworks */,
 				AF2717C429B397AB0079F94E /* Resources */,
+				AF27180729B4BEA00079F94E /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				AF27181E29B4D3860079F94E /* PBXTargetDependency */,
 			);
 			name = MSh;
 			productName = MSh;
 			productReference = AF2717C629B397AB0079F94E /* MSh.app */;
 			productType = "com.apple.product-type.application";
+		};
+		AF27180C29B4D3840079F94E /* MShWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AF27182029B4D3860079F94E /* Build configuration list for PBXNativeTarget "MShWidgetExtension" */;
+			buildPhases = (
+				AF27180929B4D3840079F94E /* Sources */,
+				AF27180A29B4D3840079F94E /* Frameworks */,
+				AF27180B29B4D3840079F94E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MShWidgetExtension;
+			productName = MShWidgetExtension;
+			productReference = AF27180D29B4D3840079F94E /* MShWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -100,6 +266,9 @@
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					AF2717C529B397AB0079F94E = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					AF27180C29B4D3840079F94E = {
 						CreatedOnToolsVersion = 14.2;
 					};
 				};
@@ -118,6 +287,7 @@
 			projectRoot = "";
 			targets = (
 				AF2717C529B397AB0079F94E /* MSh */,
+				AF27180C29B4D3840079F94E /* MShWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -132,6 +302,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AF27180B29B4D3840079F94E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF27181929B4D3860079F94E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -139,12 +317,51 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF1F865129D6FE7600682E46 /* SensorOverView.swift in Sources */,
 				AF2717CC29B397AB0079F94E /* ContentView.swift in Sources */,
+				AFD380B529B7B8060013E4CA /* LightView.swift in Sources */,
+				AFD380BA29BA62B60013E4CA /* IkeaDimmerView.swift in Sources */,
+				AF27181C29B4D3860079F94E /* MShWidget.intentdefinition in Sources */,
 				AF2717CA29B397AB0079F94E /* MShApp.swift in Sources */,
+				AFD380BC29BA6B270013E4CA /* IkeaMultiButtonRemoteView.swift in Sources */,
+				AF2717E729B3D8810079F94E /* RestApi.swift in Sources */,
+				AFD380B729B7C1820013E4CA /* RemoteView.swift in Sources */,
+				AFAFB51F29C750B500CA3C08 /* FFI.swift in Sources */,
+				AF2717E129B3B0390079F94E /* RoomView.swift in Sources */,
+				AF1F865329D704D700682E46 /* DictionaryCoder.swift in Sources */,
+				AFD380BE29BB46EA0013E4CA /* Color.swift in Sources */,
+				AF92CCEB29B50CB900B210EE /* IconSliderView.swift in Sources */,
+				AF2717DB29B39D530079F94E /* HomeViewModel.swift in Sources */,
+				AF2717D929B398D10079F94E /* HomeView.swift in Sources */,
+				AFFEB54129B4E0F800B4643D /* TabListItemView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF27180929B4D3840079F94E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF27181229B4D3840079F94E /* MShWidgetBundle.swift in Sources */,
+				AF27181429B4D3840079F94E /* MShWidgetLiveActivity.swift in Sources */,
+				AFFEB54829B4E5B400B4643D /* WidgetView.swift in Sources */,
+				AF27181629B4D3840079F94E /* MShWidget.swift in Sources */,
+				AF27181B29B4D3860079F94E /* MShWidget.intentdefinition in Sources */,
+				AFFEB54A29B4E65A00B4643D /* MShProvider.swift in Sources */,
+				AFFEB54B29B4E89400B4643D /* RestApi.swift in Sources */,
+				AFD380B229B761F10013E4CA /* TabListItemView.swift in Sources */,
+				AFAFB52029C7A48B00CA3C08 /* FFI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AF27181E29B4D3860079F94E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AF27180C29B4D3840079F94E /* MShWidgetExtension */;
+			targetProxy = AF27181D29B4D3860079F94E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		AF2717D329B397AD0079F94E /* Debug */ = {
@@ -197,6 +414,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -249,6 +467,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -259,6 +478,7 @@
 		AF2717D629B397AD0079F94E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = MSh/MSh.entitlements;
@@ -269,6 +489,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MSh/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -297,6 +518,7 @@
 		AF2717D729B397AD0079F94E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = MSh/MSh.entitlements;
@@ -307,6 +529,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MSh/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -332,6 +555,71 @@
 			};
 			name = Release;
 		};
+		AF27182129B4D3860079F94E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 659GN4CVVQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MShWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MShWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.schwenger.MSh.MShShortcutWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AF27182229B4D3860079F94E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 659GN4CVVQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MShWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MShWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.schwenger.MSh.MShShortcutWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -349,6 +637,15 @@
 			buildConfigurations = (
 				AF2717D629B397AD0079F94E /* Debug */,
 				AF2717D729B397AD0079F94E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AF27182029B4D3860079F94E /* Build configuration list for PBXNativeTarget "MShWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF27182129B4D3860079F94E /* Debug */,
+				AF27182229B4D3860079F94E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
