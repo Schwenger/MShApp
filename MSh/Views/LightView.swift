@@ -52,7 +52,7 @@ struct LightView: View {
                 HStack {
                     ZStack(alignment: .bottomTrailing) {
                         IconSlider(
-                            topic: light.topic,
+                            topic: "",
                             dimmable: light.dimmable,
                             percentage: $brightness,
                             color: $color
@@ -89,7 +89,7 @@ struct LightView: View {
                 Spacer()
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
-                        ForEach(Action.defaults(for: light.topic)) {
+                        ForEach(Action.defaults(for: "")) {
                             TabListActionView(action: $0)
                         }
                     }
@@ -110,7 +110,7 @@ struct LightView: View {
                     return await sendRequest(
                         kind: "command",
                         command: "SetColor",
-                        topic: light.topic,
+                        topic: "",
                         payload: [
                             "hue": hue.description,
                             "saturation": sat.description,
@@ -131,7 +131,7 @@ struct LightView: View {
                     await sendRequest(
                         kind: "command",
                         command: "SetBrightness",
-                        topic: light.topic,
+                        topic: "",
                         payload: ["brightness": String(self.brightness/100)]
                     )
                 }
@@ -145,7 +145,7 @@ struct LightView: View {
                     await sendRequest(
                         kind: "command",
                         command: "Toggle",
-                        topic: light.topic,
+                        topic: "",
                         payload: [:]
                     )
                 }
@@ -155,7 +155,7 @@ struct LightView: View {
                     let data = try! await sendRequest(
                         kind: "query",
                         command: "LightState",
-                        topic: light.topic,
+                        topic: "",
                         payload: [:]
                     ) ?? JSONEncoder().encode(LightState.dft)
                     let state = try? JSONDecoder().decode(LightState.self, from: data)

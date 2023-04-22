@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 class HomeViewModel: ObservableObject {
-    @Published var home = HomeModel(rooms: [])
+    @Published var home = HomeModel(name: "Home", rooms: [])
     
     var rooms: [RoomModel] {
         home.rooms
@@ -56,19 +56,19 @@ extension RoomModel  {
 extension LightGroup {
     
     var allLights: [Light] {
-        singleLights + groups.flatMap { $0.allLights }
+        atomics + subgroups.flatMap { $0.allLights }
     }
     
     static var example: LightGroup {
         LightGroup(
             name: "Example Group",
-            singleLights: [
-                Light(name: "Comfort Light", icon: "light.cylindrical.ceiling.inverse", id: "0001", topic: "", model: .IkeaOutlet),
-                Light(name: "Orb",           icon: "circle.fill", id: "0002", topic: "", model: .HueColor),
-                Light(name: "Another One",   icon: "lamp.floor.fill", id: "0003", topic: "", model: .IkeaDimmable),
+            atomics: [
+                Light(name: "Comfort Light", icon: "light.cylindrical.ceiling.inverse", model: .IkeaOutlet),
+                Light(name: "Orb",           icon: "circle.fill", model: .HueColor),
+                Light(name: "Another One",   icon: "lamp.floor.fill", model: .IkeaDimmable),
                 Light.preview,
             ],
-            groups: [])
+            subgroups: [])
     }
 }
 
@@ -81,7 +81,6 @@ extension LightState {
 protocol Device: Identifiable {
     var name:     String      { get }
     var id:       String      { get }
-    var topic:    String      { get }
     var model:    DeviceModel { get }
     
     var kind:     DeviceKind  { get }
@@ -115,6 +114,10 @@ extension Device {
 }
 
 extension Light: Device {
+    var id: String {
+        self.name
+    }
+    
     var kind: DeviceKind { self.model.kind }
     var isLight:  Bool { true }
     var isRemote: Bool { false }
@@ -124,13 +127,15 @@ extension Light: Device {
     static let preview = Light(
         name: "Preview",
         icon: "lightbulb",
-        id: "0000",
-        topic: "Preview",
         model: .HueColor
     )
 }
 
 extension Remote: Device {
+    var id: String {
+        self.name
+    }
+    
     var buttons: [RemoteButton] {
         self.actions.map(RemoteButton.init)
     }
@@ -141,8 +146,6 @@ extension Remote: Device {
     static let preview = Remote(
         name: "Preview",
         icon: "av.remote",
-        id: "0000",
-        topic: "Preview",
         model: .IkeaMultiButton,
         actions: [
             "on", "off", "brightness_move_up", "brightness_move_down", "brightness_stop"
@@ -151,6 +154,9 @@ extension Remote: Device {
 }
 
 extension Sensor: Device {
+    var id: String {
+        self.name
+    }
     
     var isLight: Bool  { false }
     var isRemote: Bool { false }
@@ -158,8 +164,6 @@ extension Sensor: Device {
     static let preview = Sensor(
         name: "Preview",
         icon: "sensor.fill",
-        id: "0000",
-        topic: "Preview",
         model: .TuyaHumidity
     )
 }
@@ -256,7 +260,7 @@ class MockHomeViewModel: HomeViewModel {
     
     init(rooms: [RoomModel]) {
         super.init()
-        self.home = HomeModel(rooms: rooms)
+        self.home = HomeModel(name: "Home", rooms: rooms)
     }
     
     override func load() async {

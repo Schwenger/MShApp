@@ -8,6 +8,7 @@
 import Foundation
 
 struct HomeModel: Codable {
+    let name: String
     let rooms: [RoomModel]
 }
 
@@ -21,15 +22,13 @@ struct RoomModel: Codable {
 
 struct LightGroup: Codable {
     let name: String
-    let singleLights: [Light]
-    let groups: [LightGroup]
+    let atomics: [Light]
+    let subgroups: [LightGroup]
 }
 
 struct Remote: Codable {
     let name: String
     let icon: String
-    let id: String
-    let topic: String
     let model: DeviceModel
     let actions: [String]
 }
@@ -37,8 +36,6 @@ struct Remote: Codable {
 struct Sensor: Codable {
     let name: String
     let icon: String
-    let id: String
-    let topic: String
     let model: DeviceModel
     var quantities: [SensorQuantity: Float]?
 }
@@ -46,8 +43,6 @@ struct Sensor: Codable {
 struct Light: Codable {
     let name: String
     let icon: String
-    let id: String
-    let topic: String
     let model: DeviceModel
 }
 
