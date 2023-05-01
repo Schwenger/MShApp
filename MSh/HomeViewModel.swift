@@ -72,9 +72,9 @@ extension LightGroup {
     }
 }
 
-extension LightState {
-    static var dft: Self {
-        LightState(hue: 0, saturation: 0, value: 1, toggledOn: true)
+extension DeviceState {
+    static var dft_light: Self {
+        DeviceState(color: HomeColor(hue: 0, sat: 0), state: "ON", val: 1, temperature: nil, humidity: nil)
     }
 }
 
@@ -137,7 +137,7 @@ extension Remote: Device {
     }
     
     var buttons: [RemoteButton] {
-        self.actions.map(RemoteButton.init)
+        self.ops().map(RemoteButton.init)
     }
     
     var isLight: Bool { false }
@@ -147,7 +147,7 @@ extension Remote: Device {
         name: "Preview",
         icon: "av.remote",
         model: .IkeaMultiButton,
-        actions: [
+        ops: [
             "on", "off", "brightness_move_up", "brightness_move_down", "brightness_stop"
         ]
     )

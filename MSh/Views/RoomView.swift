@@ -25,7 +25,7 @@ struct RoomView: View {
             )
             let result = await sendRequest(
                 kind: "query",
-                command: "SensorState",
+                command: "DeviceState",
                 topic: topic,
                 payload: [:]
             )
@@ -96,7 +96,7 @@ struct RoomView: View {
             // Schedule reguar update queries.
         }
         .sheet(item: $selectedLight) { light in
-            LightView(light: light)
+            LightView(light: light, room: room.name)
         }
         .sheet(item: $selectedRemote) { remote in
             RemoteView(remote: remote, surroundingTopic: createRoomTopic(room.name))

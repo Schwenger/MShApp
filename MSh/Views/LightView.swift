@@ -11,6 +11,7 @@ import SwiftUI
 struct LightView: View {
     
     let light: Light
+    let room: String
     @State var initialized: Date?
     @State var lastToggle: Date = Date()
     @State var color: Color = .white
@@ -32,7 +33,12 @@ struct LightView: View {
         return Date.now.timeIntervalSince(t) > TimeInterval(0.5)
     }
     
-    init(light: Light) {
+    var topic: String {
+        createDeviceTopic(kind: light.model.kind.rawValue, room: room, name: light.name)
+    }
+    
+    init(light: Light, room: String) {
+        self.room = room
         self.light = light
         if !light.color {
             self.color = .white
@@ -52,7 +58,7 @@ struct LightView: View {
                 HStack {
                     ZStack(alignment: .bottomTrailing) {
                         IconSlider(
-                            topic: "",
+                            topic: self.topic,
                             dimmable: light.dimmable,
                             percentage: $brightness,
                             color: $color
@@ -89,7 +95,7 @@ struct LightView: View {
                 Spacer()
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
-                        ForEach(Action.defaults(for: "")) {
+                        ForEach(Action.defaults(for: self.topic)) {
                             TabListActionView(action: $0)
                         }
                     }
@@ -109,8 +115,8 @@ struct LightView: View {
                 Task {
                     return await sendRequest(
                         kind: "command",
-                        command: "SetColor",
-                        topic: "",
+                        command: "ChangeState",
+                        topic: self.topic,
                         payload: [
                             "hue": hue.description,
                             "saturation": sat.description,
@@ -130,9 +136,9 @@ struct LightView: View {
                 Task {
                     await sendRequest(
                         kind: "command",
-                        command: "SetBrightness",
-                        topic: "",
-                        payload: ["brightness": String(self.brightness/100)]
+                        command: "ChangeState",
+                        topic: self.topic,
+                        payload: ["value": String(self.brightness/100)]
                     )
                 }
             }
@@ -145,7 +151,7 @@ struct LightView: View {
                     await sendRequest(
                         kind: "command",
                         command: "Toggle",
-                        topic: "",
+                        topic: self.topic,
                         payload: [:]
                     )
                 }
@@ -154,20 +160,21 @@ struct LightView: View {
                 Task {
                     let data = try! await sendRequest(
                         kind: "query",
-                        command: "LightState",
-                        topic: "",
+                        command: "DeviceState",
+                        topic: self.topic,
                         payload: [:]
-                    ) ?? JSONEncoder().encode(LightState.dft)
-                    let state = try? JSONDecoder().decode(LightState.self, from: data)
-                    guard let state = state else { return }
+                    ) ?? JSONEncoder().encode(DeviceState.dft_light)
+                    let state = try! JSONDecoder().decode(DeviceState.self, from: data)
                     withAnimation {
-                        self.color = Color(
-                            hue: state.hue,
-                            saturation: state.saturation,
-                            brightness: state.value
-                        )
-                        self.brightness = state.value * 100
-                        self.isOn = state.toggledOn
+                        if light.color {
+                            self.color = Color(
+                                hue: state.color!.hue,
+                                saturation: state.color!.sat,
+                                brightness: state.val!
+                            )
+                        }
+                        self.brightness = state.val! * 100
+                        self.isOn = state.state == "ON"
                         self.initialized = Date.now
                     }
                 }
@@ -182,6 +189,6 @@ struct LightView: View {
 
 struct LightView_Previews: PreviewProvider {
     static var previews: some View {
-        LightView(light: Light.preview)
+        LightView(light: Light.preview, room: "Living Room")
     }
 }

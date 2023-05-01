@@ -67,7 +67,11 @@ private func _sendRequest(
     print(builder.url!)
     print()
     print()
-    return try? await URLSession.shared.data(from: builder.url!).0
+    let res = try? await URLSession.shared.data(from: builder.url!).0
+    if let data = res {
+      print(String(decoding: data, as: UTF8.self));
+    }
+    return res
 }
 
 

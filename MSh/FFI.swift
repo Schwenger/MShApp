@@ -30,7 +30,16 @@ struct Remote: Codable {
     let name: String
     let icon: String
     let model: DeviceModel
-    let actions: [String]
+    private let actions: [String:String]
+    func ops() -> [String] {
+        [String](actions.keys)
+    }
+    init(name: String, icon: String, model: DeviceModel, ops: [String]) {
+        self.name = name
+        self.icon = icon
+        self.model = model
+        self.actions = Dictionary(uniqueKeysWithValues: ops.map { ($0, $0) })
+    }
 }
 
 struct Sensor: Codable {
@@ -46,11 +55,17 @@ struct Light: Codable {
     let model: DeviceModel
 }
 
-struct LightState: Codable {
+struct DeviceState: Codable {
+    let color: HomeColor?
+    let state: String?
+    let val: Double?
+    let temperature: Double?
+    let humidity: Double?
+}
+
+struct HomeColor: Codable {
     let hue: Double
-    let saturation: Double
-    let value: Double
-    let toggledOn: Bool
+    let sat: Double
 }
 
 enum DeviceKind: String, Codable {
