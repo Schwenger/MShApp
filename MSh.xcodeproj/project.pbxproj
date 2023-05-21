@@ -29,13 +29,17 @@
 		AF92CCEB29B50CB900B210EE /* IconSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF92CCEA29B50CB900B210EE /* IconSliderView.swift */; };
 		AFAFB51F29C750B500CA3C08 /* FFI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAFB51E29C750B500CA3C08 /* FFI.swift */; };
 		AFAFB52029C7A48B00CA3C08 /* FFI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAFB51E29C750B500CA3C08 /* FFI.swift */; };
+		AFB8CA832A0AABD600C7FC02 /* ActionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB8CA822A0AABD600C7FC02 /* ActionListView.swift */; };
+		AFB8CA852A0AAFB200C7FC02 /* Misc.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB8CA842A0AAFB200C7FC02 /* Misc.swift */; };
+		AFB8CA872A0AC7E600C7FC02 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB8CA862A0AC7E600C7FC02 /* Action.swift */; };
+		AFB8CA892A17F69B00C7FC02 /* SensorHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB8CA882A17F69B00C7FC02 /* SensorHistoryView.swift */; };
 		AFD380B229B761F10013E4CA /* TabListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD380B129B761F10013E4CA /* TabListItemView.swift */; };
 		AFD380B529B7B8060013E4CA /* LightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD380B429B7B8060013E4CA /* LightView.swift */; };
 		AFD380B729B7C1820013E4CA /* RemoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD380B629B7C1820013E4CA /* RemoteView.swift */; };
 		AFD380BA29BA62B60013E4CA /* IkeaDimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD380B929BA62B60013E4CA /* IkeaDimmerView.swift */; };
 		AFD380BC29BA6B270013E4CA /* IkeaMultiButtonRemoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD380BB29BA6B270013E4CA /* IkeaMultiButtonRemoteView.swift */; };
 		AFD380BE29BB46EA0013E4CA /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD380BD29BB46EA0013E4CA /* Color.swift */; };
-		AFFEB54129B4E0F800B4643D /* TabListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFEB54029B4E0F800B4643D /* TabListItemView.swift */; };
+		AFFEB54129B4E0F800B4643D /* DeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFEB54029B4E0F800B4643D /* DeviceView.swift */; };
 		AFFEB54829B4E5B400B4643D /* WidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFEB54629B4E5B400B4643D /* WidgetView.swift */; };
 		AFFEB54A29B4E65A00B4643D /* MShProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFEB54929B4E65A00B4643D /* MShProvider.swift */; };
 		AFFEB54B29B4E89400B4643D /* RestApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2717E629B3D8810079F94E /* RestApi.swift */; };
@@ -90,13 +94,17 @@
 		AF27181A29B4D3860079F94E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AF92CCEA29B50CB900B210EE /* IconSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconSliderView.swift; sourceTree = "<group>"; };
 		AFAFB51E29C750B500CA3C08 /* FFI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFI.swift; sourceTree = "<group>"; };
+		AFB8CA822A0AABD600C7FC02 /* ActionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionListView.swift; sourceTree = "<group>"; };
+		AFB8CA842A0AAFB200C7FC02 /* Misc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Misc.swift; sourceTree = "<group>"; };
+		AFB8CA862A0AC7E600C7FC02 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
+		AFB8CA882A17F69B00C7FC02 /* SensorHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorHistoryView.swift; sourceTree = "<group>"; };
 		AFD380B129B761F10013E4CA /* TabListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabListItemView.swift; sourceTree = "<group>"; };
 		AFD380B429B7B8060013E4CA /* LightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightView.swift; sourceTree = "<group>"; };
 		AFD380B629B7C1820013E4CA /* RemoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteView.swift; sourceTree = "<group>"; };
 		AFD380B929BA62B60013E4CA /* IkeaDimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IkeaDimmerView.swift; sourceTree = "<group>"; };
 		AFD380BB29BA6B270013E4CA /* IkeaMultiButtonRemoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IkeaMultiButtonRemoteView.swift; sourceTree = "<group>"; };
 		AFD380BD29BB46EA0013E4CA /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
-		AFFEB54029B4E0F800B4643D /* TabListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabListItemView.swift; sourceTree = "<group>"; };
+		AFFEB54029B4E0F800B4643D /* DeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceView.swift; sourceTree = "<group>"; };
 		AFFEB54629B4E5B400B4643D /* WidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetView.swift; sourceTree = "<group>"; };
 		AFFEB54929B4E65A00B4643D /* MShProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MShProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -155,6 +163,7 @@
 				AFD380BD29BB46EA0013E4CA /* Color.swift */,
 				AFAFB51E29C750B500CA3C08 /* FFI.swift */,
 				AF1F865229D704D700682E46 /* DictionaryCoder.swift */,
+				AFB8CA862A0AC7E600C7FC02 /* Action.swift */,
 			);
 			path = MSh;
 			sourceTree = "<group>";
@@ -200,9 +209,12 @@
 				AF2717E029B3B0390079F94E /* RoomView.swift */,
 				AFD380B429B7B8060013E4CA /* LightView.swift */,
 				AFD380B629B7C1820013E4CA /* RemoteView.swift */,
-				AFFEB54029B4E0F800B4643D /* TabListItemView.swift */,
+				AFFEB54029B4E0F800B4643D /* DeviceView.swift */,
 				AF92CCEA29B50CB900B210EE /* IconSliderView.swift */,
 				AF1F865029D6FE7500682E46 /* SensorOverView.swift */,
+				AFB8CA822A0AABD600C7FC02 /* ActionListView.swift */,
+				AFB8CA842A0AAFB200C7FC02 /* Misc.swift */,
+				AFB8CA882A17F69B00C7FC02 /* SensorHistoryView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -327,13 +339,17 @@
 				AF2717E729B3D8810079F94E /* RestApi.swift in Sources */,
 				AFD380B729B7C1820013E4CA /* RemoteView.swift in Sources */,
 				AFAFB51F29C750B500CA3C08 /* FFI.swift in Sources */,
+				AFB8CA852A0AAFB200C7FC02 /* Misc.swift in Sources */,
 				AF2717E129B3B0390079F94E /* RoomView.swift in Sources */,
 				AF1F865329D704D700682E46 /* DictionaryCoder.swift in Sources */,
+				AFB8CA872A0AC7E600C7FC02 /* Action.swift in Sources */,
+				AFB8CA832A0AABD600C7FC02 /* ActionListView.swift in Sources */,
 				AFD380BE29BB46EA0013E4CA /* Color.swift in Sources */,
 				AF92CCEB29B50CB900B210EE /* IconSliderView.swift in Sources */,
 				AF2717DB29B39D530079F94E /* HomeViewModel.swift in Sources */,
 				AF2717D929B398D10079F94E /* HomeView.swift in Sources */,
-				AFFEB54129B4E0F800B4643D /* TabListItemView.swift in Sources */,
+				AFFEB54129B4E0F800B4643D /* DeviceView.swift in Sources */,
+				AFB8CA892A17F69B00C7FC02 /* SensorHistoryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

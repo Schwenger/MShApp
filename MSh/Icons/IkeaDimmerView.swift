@@ -50,7 +50,7 @@ struct IkeaDimmerView: View {
         GeometryReader { geo in
             ZStack {
                 RoundedRectangle(cornerRadius: geo.size.width * 0.3)
-                    .fill(Color.systemBackground)
+                    .fill(Color.systemBackground.opacity(0.01))
                 RoundedRectangle(cornerRadius: geo.size.width * 0.3)
                     .strokeBorder(lineWidth: geo.size.width * 0.03)
                 Path { path in

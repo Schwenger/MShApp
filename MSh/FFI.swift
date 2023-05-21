@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct HomeModel: Codable {
     let name: String
@@ -61,6 +62,8 @@ struct DeviceState: Codable {
     let val: Double?
     let temperature: Double?
     let humidity: Double?
+    let occupancy: Bool?
+    let time: Int?
 }
 
 struct HomeColor: Codable {
@@ -87,7 +90,9 @@ enum DeviceModel: String, Codable {
     case IkeaMultiButton
     case IkeaDimmable
     case IkeaOutlet
+    case IkeaMotion
     case HueColor
+    case HueButton
     case TuyaHumidity
     
     var vendor: Vendor {
@@ -96,7 +101,9 @@ enum DeviceModel: String, Codable {
             case .IkeaOutlet:      return .Ikea
             case .IkeaMultiButton: return .Ikea
             case .IkeaDimmable:    return .Ikea
+            case .IkeaMotion:      return .Ikea
             case .HueColor:        return .Hue
+            case .HueButton:       return .Hue
             case .TuyaHumidity:    return .Tuya
         }
     }
@@ -104,10 +111,12 @@ enum DeviceModel: String, Codable {
     var kind: DeviceKind {
         switch self {
             case .IkeaDimmer:      return .Remote
+            case .IkeaMotion:      return .Sensor
             case .IkeaOutlet:      return .Outlet
             case .IkeaMultiButton: return .Remote
             case .IkeaDimmable:    return .Light
             case .HueColor:        return .Light
+            case .HueButton:       return .Remote
             case .TuyaHumidity:    return .Sensor
         }
     }
@@ -118,17 +127,21 @@ enum DeviceModel: String, Codable {
             case .IkeaOutlet:      return false
             case .IkeaMultiButton: return false
             case .IkeaDimmable:    return true
+            case .IkeaMotion:      return false
             case .HueColor:        return true
+            case .HueButton:       return false
             case .TuyaHumidity:    return false
         }
     }
     var color: Bool {
         switch self {
             case .IkeaDimmer:      return false
+            case .IkeaMotion:      return false
             case .IkeaOutlet:      return false
             case .IkeaMultiButton: return false
             case .IkeaDimmable:    return false
             case .HueColor:        return true
+            case .HueButton:       return false
             case .TuyaHumidity:    return false
         }
     }
@@ -137,15 +150,164 @@ enum DeviceModel: String, Codable {
 enum SensorQuantity: String, Codable, CaseIterable {
     case Temperature
     case Humidity
+    case Occupancy
     
+    var type: SensorType {
+        switch self {
+            case .Temperature:
+                return .Numeric
+            case .Humidity:
+                return .Numeric
+            case .Occupancy:
+                return .Boolean
+        }
+    }
+
     var uom: String {
         switch self {
+            case .Humidity: return "%"
+            case .Occupancy: return ""
             case .Temperature: return "°C"
-            case .Humidity: return "% RLF"
+        }
+    }
+    
+    var icon: String {
+        switch self {
+            case .Humidity: return "drop.fill"
+            case .Occupancy: return "figure.walk.motion"
+            case .Temperature: return "thermometer.high"
+        }
+    }
+    
+    var color: Color {
+        switch self {
+            case .Humidity: return .blue
+            case .Occupancy: return .green
+            case .Temperature: return .orange
+        }
+    }
+    
+    func display(_ value: String) -> String {
+        switch self {
+            case .Humidity:
+                return String(format: "%.1f", Float(value)!)
+            case .Temperature:
+                return String(format: "%.1f", Float(value)!)
+            case .Occupancy:
+                return Bool(value)! ? "Occupied" : "Empty"
         }
     }
     
     static func get(_ label: String) -> Self? {
         return self.allCases.first{ "\($0)" == label }
+    }
+}
+
+enum SensorType {
+    case Numeric
+    case Boolean
+}
+
+struct SensorValue: Identifiable, Hashable {
+    private let value: String
+    let unit: SensorQuantity
+    let id: UUID = UUID()
+    
+    init(value: String, unit: SensorQuantity) {
+        self.value = value
+        self.unit = unit
+    }
+    
+    static func from(_ state: DeviceState) -> [Self] {
+        var res: [Self] = []
+        if let hum = state.humidity {
+            res.append(Self(value: hum.description, unit: .Humidity))
+        }
+        if let temp = state.temperature {
+            res.append(Self(value: temp.description, unit: .Temperature))
+        }
+        if let occ = state.occupancy {
+            res.append(Self(value: occ.description, unit: .Occupancy))
+        }
+        return res
+    }
+    
+    var uom: String { self.unit.uom }
+    var icon: String { self.unit.icon }
+    var display: String { self.unit.display(value) }
+    var asFloat: Float {
+        switch self.unit.type {
+            case .Numeric: return Float(self.value)!
+            case .Boolean: return Bool(self.value)! ? 1.0 : 0.0
+        }
+    }
+    var asBool: Bool { Bool(self.value)! }
+}
+
+struct SensorHistory: Identifiable {
+    let history: [SensorQuantity: [(SensorValue, Date)]]
+    let id = UUID()
+    
+    init(_ states: [DeviceState]) {
+        var history = [SensorQuantity: [(SensorValue, Date)]]()
+        for state in states {
+            let values = SensorValue.from(state)
+            let date = Date(timeIntervalSince1970: TimeInterval(state.time!))
+            for value in values {
+                var inner = history[value.unit] ?? []
+                inner.append((value, date))
+                history[value.unit] = inner
+            }
+        }
+        self.history = history
+    }
+    
+    init() {
+        self.history = [:]
+    }
+    
+    private init(quantity: SensorQuantity, history: [(String, Int)]) {
+        var h: [(SensorValue, Date)] = []
+        for (val, t) in history {
+            let date = Date(timeIntervalSince1970: TimeInterval(t))
+            h.append((SensorValue(value: val, unit: quantity), date))
+        }
+        self.history = [quantity: h]
+    }
+    
+    private init(inner: [SensorQuantity: [(SensorValue, Date)]]) {
+        self.history = inner
+    }
+    
+    var latest: [SensorValue] { history.values.compactMap { $0.last?.0 } }
+    
+    func merge(with other: Self) -> Self {
+        var copy = self.history
+        copy.merge(other.history, uniquingKeysWith: +)
+        for (quant, hist) in copy {
+            copy[quant] = hist.sorted(by: { $0.1 < $1.1 })
+        }
+        return Self(inner: copy)
+    }
+    
+    func splitOff(by target: SensorType) -> Self {
+        var copy = self.history
+        for quant in copy.keys {
+            if quant.type != target {
+                copy.removeValue(forKey: quant)
+            }
+        }
+        return SensorHistory(inner: copy)
+    }
+    
+    static var preview: Self {
+        var res = SensorHistory(quantity: .Humidity, history: [
+            ("5", 100),
+            ("12", 200),
+            ("8", 300)
+        ])
+        res = res.merge(with: SensorHistory(quantity: .Occupancy, history: [("true", 100), ("false", 150), ("true", 200), ("false", 300)]))
+        res = res.merge(with: SensorHistory(quantity: .Temperature, history: [("0", 100), ("2", 200), ("4", 300)]))
+        return res
     }
 }

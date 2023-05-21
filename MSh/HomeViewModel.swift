@@ -23,6 +23,7 @@ class HomeViewModel: ObservableObject {
     func load() async {
         let topic = createHomeTopic()
         let data = await sendRequest(kind: "query", command: "Structure", topic: topic, payload: [:])
+        print(String(decoding: data!, as: UTF8.self))
         do {
             let decodedResponse = try JSONDecoder().decode(HomeModel.self, from: data ?? defaultResponse)
             self.home = decodedResponse
@@ -74,7 +75,15 @@ extension LightGroup {
 
 extension DeviceState {
     static var dft_light: Self {
-        DeviceState(color: HomeColor(hue: 0, sat: 0), state: "ON", val: 1, temperature: nil, humidity: nil)
+        DeviceState(
+            color: HomeColor(hue: 0, sat: 0),
+            state: "ON",
+            val: 1,
+            temperature: nil,
+            humidity: nil,
+            occupancy: nil,
+            time: nil
+        )
     }
 }
 
@@ -94,20 +103,24 @@ extension Device {
     var kind: DeviceKind {
         switch self.model {
             case .IkeaDimmer:      return .Remote
+            case .IkeaMotion:      return .Sensor
             case .IkeaMultiButton: return .Remote
             case .IkeaOutlet:      return .Outlet
             case .IkeaDimmable:    return .Light
             case .HueColor:        return .Light
+            case .HueButton:       return .Remote
             case .TuyaHumidity:    return .Sensor
         }
     }
     var vendor: Vendor {
         switch self.model {
             case .IkeaDimmer:      return .Ikea
+            case .IkeaMotion:      return .Ikea
             case .IkeaMultiButton: return .Ikea
             case .IkeaOutlet:      return .Ikea
             case .IkeaDimmable:    return .Ikea
             case .HueColor:        return .Hue
+            case .HueButton:       return .Hue
             case .TuyaHumidity:    return .Tuya
         }
     }
@@ -125,7 +138,7 @@ extension Light: Device {
     var color:    Bool { self.model.color }
     
     static let preview = Light(
-        name: "Preview",
+        name: "PreviewLight",
         icon: "lightbulb",
         model: .HueColor
     )
@@ -144,7 +157,7 @@ extension Remote: Device {
     var isRemote: Bool { true }
     
     static let preview = Remote(
-        name: "Preview",
+        name: "PreviewRemote",
         icon: "av.remote",
         model: .IkeaMultiButton,
         ops: [
@@ -162,7 +175,7 @@ extension Sensor: Device {
     var isRemote: Bool { false }
     
     static let preview = Sensor(
-        name: "Preview",
+        name: "PreviewSensor",
         icon: "sensor.fill",
         model: .TuyaHumidity
     )
@@ -179,11 +192,11 @@ struct RemoteButton: Identifiable {
     init(_ name: String) {
         switch name {
             case "on":
-                self.icon = "sun.max"
+                self.icon = "sun.max.fill"
                 self.action = "TurnOn"
                 self.readable = "Turn On"
             case "off":
-                self.icon = "sun.min"
+                self.icon = "moon.fill"
                 self.action = "TurnOff"
                 self.readable = "Turn Off"
             case "brightness_move_up":

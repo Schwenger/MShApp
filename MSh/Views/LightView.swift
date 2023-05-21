@@ -68,18 +68,18 @@ struct LightView: View {
                     VStack(alignment: .center) {
                         Spacer()
                             .frame(height: 20)
-                        Image(systemName: isOn ? "sun.max.fill" : "moon.fill" )
-                            .resizable()
-                            .scaledToFit()
-                            .foregroundColor(.orange)
-                            .frame(width: 100, height: 100)
-                            .onTapGesture {
-                                if Date().timeIntervalSince(self.lastToggle) < 3 {
-                                    return
-                                }
-                                self.lastToggle = Date()
-                                self.isOn.toggle()
-                            }
+//                        Image(systemName: isOn ? "sun.max.fill" : "moon.fill" )
+//                            .resizable()
+//                            .scaledToFit()
+//                            .foregroundColor(.orange)
+//                            .frame(width: 100, height: 100)
+//                            .onTapGesture {
+//                                if Date().timeIntervalSince(self.lastToggle) < 3 {
+//                                    return
+//                                }
+//                                self.lastToggle = Date()
+//                                self.isOn.toggle()
+//                            }
                         Spacer()
                         if light.color {
                             ColorPicker("Pick a color.", selection: $color, supportsOpacity: false)
@@ -93,16 +93,11 @@ struct LightView: View {
                 }
                 .frame(height: 300)
                 Spacer()
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack {
-                        ForEach(Action.defaults(for: self.topic)) {
-                            TabListActionView(action: $0)
-                        }
-                    }
-                }
+                ActionListView(topic: self.topic)
                 Spacer()
                 Text(light.id)
                     .font(.footnote)
+                    .padding(.bottom)
             }
             .padding(.top)
             .padding(.horizontal)
@@ -158,13 +153,17 @@ struct LightView: View {
             }
             .onAppear {
                 Task {
-                    let data = try! await sendRequest(
+                    guard let data = try? await sendRequest(
                         kind: "query",
                         command: "DeviceState",
                         topic: self.topic,
                         payload: [:]
-                    ) ?? JSONEncoder().encode(DeviceState.dft_light)
-                    let state = try! JSONDecoder().decode(DeviceState.self, from: data)
+                    ) ?? JSONEncoder().encode(DeviceState.dft_light) else {
+                        return
+                    }
+                    guard let state = try? JSONDecoder().decode(DeviceState.self, from: data) else {
+                        return
+                    }
                     withAnimation {
                         if light.color {
                             self.color = Color(
@@ -173,7 +172,7 @@ struct LightView: View {
                                 brightness: state.val!
                             )
                         }
-                        self.brightness = state.val! * 100
+                        self.brightness = (state.val ?? 1) * 100
                         self.isOn = state.state == "ON"
                         self.initialized = Date.now
                     }

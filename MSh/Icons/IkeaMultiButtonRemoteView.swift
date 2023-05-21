@@ -69,8 +69,9 @@ struct IkeaMultiButtonRemoteView: View {
     var body: some View {
         GeometryReader { geo in
             ZStack {
+                // Necessary so that also blank parts have a tab listener.
                 Circle()
-                    .fill(Color.systemBackground)
+                    .fill(Color.systemBackground.opacity(0.01))
                 Circle()
                     .strokeBorder(lineWidth: geo.size.width * 0.03)
                 Circle()

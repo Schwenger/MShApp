@@ -63,6 +63,21 @@ struct RemoteView: View {
         _ = await sendRequest(kind: "command", command: command, topic: surroundingTopic, payload: [:])
     }
     
+    func actions(topic: String) -> [(Action, Action?)] {
+        let actions = remote.buttons.map { but in
+            Action(
+                name: but.readable,
+                icon: but.icon,
+                action: but.action,
+                topic: topic
+            )
+        }
+        let pairs = stride(from: 0, to: actions.endIndex, by: 2).map { idx in
+            (actions[idx], idx < actions.index(before: actions.endIndex) ? actions[idx.advanced(by: 1)] : nil)
+        }
+        return pairs
+    }
+    
     var body: some View {
         GeometryReader { geo in
             VStack {
@@ -89,16 +104,11 @@ struct RemoteView: View {
                 }
                     .frame(width: 250, height: 250)
                 Spacer()
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack {
-                        ForEach(remote.buttons) {
-                            TabListRemoteButtonView(button: $0, topic: surroundingTopic)
-                        }
-                    }
-                }
+                ActionListView(actions: self.actions(topic: surroundingTopic))
                 Spacer()
                 Text(remote.id)
                     .font(.footnote)
+                    .padding(.bottom)
             }
             .padding(.top)
             .padding(.horizontal)

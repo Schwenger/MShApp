@@ -87,8 +87,8 @@ struct MiniTabListItem_Previews: PreviewProvider {
         let item = TabListItem(
             name: "Toggle",
             icon: "power",
-            action: "Preview",
-            topic: "Preview"
+            action: "PreviewAction",
+            topic: "PreviewTopic"
         )
         TabListItemView(item)
     }
