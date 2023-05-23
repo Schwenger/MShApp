@@ -11,6 +11,7 @@ import SwiftUI
 struct HomeModel: Codable {
     let name: String
     let rooms: [RoomModel]
+    let scenes: [RustScene]
 }
 
 struct RoomModel: Codable {
@@ -144,4 +145,8 @@ enum DeviceModel: String, Codable {
             case .TuyaHumidity:    return false
         }
     }
+}
+
+struct RustScene: Codable {
+    let name: String
 }

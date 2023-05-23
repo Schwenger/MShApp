@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 func createHomeTopic() -> String {
-    return createTopic(["Home", "home"])
+    return createTopic(["Home"])
 }
 
 func createRoomTopic(_ name: String) -> String {

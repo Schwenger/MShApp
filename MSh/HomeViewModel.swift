@@ -9,10 +9,13 @@ import Foundation
 import SwiftUI
 
 class HomeViewModel: ObservableObject {
-    @Published var home = HomeModel(name: "Home", rooms: [])
+    @Published var home = HomeModel(name: "Home", rooms: [], scenes: [])
     
     var rooms: [RoomModel] {
         home.rooms
+    }
+    var scenes: [RustScene] {
+        home.scenes
     }
     
     var defaultResponse: Data {
@@ -271,9 +274,9 @@ struct RemoteButton: Identifiable {
 
 class MockHomeViewModel: HomeViewModel {
     
-    init(rooms: [RoomModel]) {
+    init(rooms: [RoomModel], scenes: [RustScene]) {
         super.init()
-        self.home = HomeModel(name: "Home", rooms: rooms)
+        self.home = HomeModel(name: "Home", rooms: rooms, scenes: scenes)
     }
     
     override func load() async {
