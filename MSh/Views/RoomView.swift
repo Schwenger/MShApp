@@ -11,49 +11,27 @@ struct RoomView: View {
     
     @State var selectedLight: Light?
     @State var selectedRemote: Remote?
-//    @State var selectedSensor: Sensor?
-    @State var sensedQuantities: [SensorQuantity: SensorValue] = [:]
     @State var sensorHistory: SensorHistory = SensorHistory()
     @State var showHistory: Bool = false
     
     let room: RoomModel
     
-    func updateSensors() async {
-        for sensor in room.sensors {
-            let topic = createDeviceTopic(
-                kind: "Sensor",
-                room: room.name,
-                name: sensor.name
-            )
-            let result = await sendRequest(
-                kind: "query",
-                command: "DeviceState",
-                topic: topic,
-                payload: [:]
-            )
-            guard let result = result else {
-                return
-            }
-            guard let converted = try? JSONDecoder().decode(DeviceState.self, from: result) else {
-                return
-            }
-            if let hum = converted.humidity {
-                sensedQuantities[.Humidity] = SensorValue(value: hum.description, unit: .Humidity)
-            }
-            if let temp = converted.temperature {
-                sensedQuantities[.Temperature] = SensorValue(value: temp.description, unit: .Temperature)
-            }
-            if let occ = converted.occupancy {
-                sensedQuantities[.Occupancy] = SensorValue(value: occ.description, unit: .Occupancy)
+    var sensedQuantities: [SensorQuantity: SensorValue] {
+        var res = [SensorQuantity: SensorValue]()
+        for (q, h) in self.sensorHistory.history {
+            if let latest = h.last {
+                res[q] = latest.0
             }
         }
+        print("Sensed quantities: \(res)")
+        return res
     }
     
     func queryHistories() async {
-        print("querying histories.")
+        print("Querying histories.")
         var history = SensorHistory()
         for sensor in room.sensors {
-            print("For sensor")
+            print("For sensor \(sensor.name)")
             let topic = createDeviceTopic(
                 kind: "Sensor",
                 room: room.name,
@@ -65,22 +43,22 @@ struct RoomView: View {
                 topic: topic,
                 payload: [:]
             )
-            print("received result.")
+            print("Received result.")
             guard let result = result else {
                 print("result empty.")
                 return
             }
-            print(String(decoding: result, as: UTF8.self))
+            print("Result is \(String(decoding: result, as: UTF8.self))")
             let _ = try! JSONDecoder().decode([DeviceState].self, from: result)
             guard let converted = try? JSONDecoder().decode([DeviceState].self, from: result) else {
+                print("Conversion failed")
                 return
             }
-            print("converted.")
-            history = history.merge(with: SensorHistory(converted))
+            print("Converted.")
+            history.merge(with: SensorHistory(converted))
         }
-        print("recept histories.")
+        print("Received histories.")
         self.sensorHistory = history
-        print(self.sensorHistory)
     }
     
     var body: some View {
@@ -124,7 +102,6 @@ struct RoomView: View {
             Spacer()
         }
         .onAppear {
-            Task { await updateSensors() }
             Task { await queryHistories() }
             // Schedule reguar update queries.
         }

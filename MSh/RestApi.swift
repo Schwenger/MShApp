@@ -62,11 +62,6 @@ private func _sendRequest(
         queryItems.append(URLQueryItem(name: key, value: value))
     }
     builder.queryItems = queryItems
-    print()
-    print()
-    print(builder.url!)
-    print()
-    print()
     let res = try? await URLSession.shared.data(from: builder.url!).0
     if let data = res {
       print(String(decoding: data, as: UTF8.self));

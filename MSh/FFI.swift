@@ -245,7 +245,7 @@ struct SensorValue: Identifiable, Hashable {
 }
 
 struct SensorHistory: Identifiable {
-    let history: [SensorQuantity: [(SensorValue, Date)]]
+    private(set) var history: [SensorQuantity: [(SensorValue, Date)]]
     let id = UUID()
     
     init(_ states: [DeviceState]) {
@@ -281,18 +281,16 @@ struct SensorHistory: Identifiable {
     
     var latest: [SensorValue] { history.values.compactMap { $0.last?.0 } }
     
-    func merge(with other: Self) -> Self {
-        var copy = self.history
-        copy.merge(other.history, uniquingKeysWith: +)
-        for (quant, hist) in copy {
-            copy[quant] = hist.sorted(by: { $0.1 < $1.1 })
+    mutating func merge(with other: Self) {
+        self.history.merge(other.history, uniquingKeysWith: +)
+        for (quant, hist) in self.history {
+            self.history[quant] = hist.sorted(by: { $0.1 < $1.1 })
         }
-        return Self(inner: copy)
     }
     
     func splitOff(by target: SensorType) -> Self {
         var copy = self.history
-        for quant in copy.keys {
+        for quant in self.history.keys {
             if quant.type != target {
                 copy.removeValue(forKey: quant)
             }
@@ -301,13 +299,30 @@ struct SensorHistory: Identifiable {
     }
     
     static var preview: Self {
+        let times = [
+            Int(Date.now.addingTimeInterval(TimeInterval(integerLiteral: -0*60*30)).timeIntervalSince1970),
+            Int(Date.now.addingTimeInterval(TimeInterval(integerLiteral: -1*60*30)).timeIntervalSince1970),
+            Int(Date.now.addingTimeInterval(TimeInterval(integerLiteral: -2*60*30)).timeIntervalSince1970),
+            Int(Date.now.addingTimeInterval(TimeInterval(integerLiteral: -3*60*30)).timeIntervalSince1970),
+            Int(Date.now.addingTimeInterval(TimeInterval(integerLiteral: -4*60*30)).timeIntervalSince1970),
+            Int(Date.now.addingTimeInterval(TimeInterval(integerLiteral: -5*60*30)).timeIntervalSince1970)
+        ]
         var res = SensorHistory(quantity: .Humidity, history: [
-            ("5", 100),
-            ("12", 200),
-            ("8", 300)
+            ("5", times[2]),
+            ("12", times[1]),
+            ("8", times[0])
         ])
-        res = res.merge(with: SensorHistory(quantity: .Occupancy, history: [("true", 100), ("false", 150), ("true", 200), ("false", 300)]))
-        res = res.merge(with: SensorHistory(quantity: .Temperature, history: [("0", 100), ("2", 200), ("4", 300)]))
+        res.merge(with: SensorHistory(quantity: .Occupancy, history: [
+            ("true", times[5]),
+            ("false", times[3]),
+            ("true", times[2]),
+            ("false", times[1])
+        ]))
+        res.merge(with: SensorHistory(quantity: .Temperature, history: [
+            ("0", times[4]),
+            ("2", times[3]),
+            ("4", times[1])
+        ]))
         return res
     }
 }
